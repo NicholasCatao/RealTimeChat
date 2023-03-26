@@ -20,7 +20,7 @@ namespace ChatRealTime.Infrastructure.Data.Context
 
            
 
-        public DbSet<Message> Message { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DbSet<AppUser> AppUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

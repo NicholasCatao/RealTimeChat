@@ -1,4 +1,5 @@
 using ChatRealTime.Infrastructure.Data.Context;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +13,11 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("connectionString")));
 
 
-builder.Services.AddDbContextPool<AppDbContext>(options =>
-       options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
+builder.Services.AddDbContext<AppDbContext>(options =>
+          options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
+
+
+Console.WriteLine(Directory.GetCurrentDirectory()); 
 
 var app = builder.Build();
 

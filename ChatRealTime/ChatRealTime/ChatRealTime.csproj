@@ -12,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChatRealTime.Application\ChatRealTime.Application.csproj" />
+    <ProjectReference Include="..\ChatRealTime.Infrastructure.CrossCutting.Ioc\ChatRealTime.Infrastructure.CrossCutting.Ioc.csproj" />
     <ProjectReference Include="..\ChatRealTime.Infrastructure.Data\ChatRealTime.Infrastructure.Data.csproj" />
   </ItemGroup>
 

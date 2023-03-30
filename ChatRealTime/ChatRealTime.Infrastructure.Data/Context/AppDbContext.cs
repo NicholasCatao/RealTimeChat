@@ -1,14 +1,11 @@
 ﻿using ChatRealTime.Domain.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.Threading.Channels;
 
 namespace ChatRealTime.Infrastructure.Data.Context
 {
     public class AppDbContext : IdentityDbContext
     {
-        private readonly string _ConnectionStringSqlServer;
         public AppDbContext(DbContextOptions<AppDbContext>options) : base(options)
         {
         }
@@ -17,7 +14,6 @@ namespace ChatRealTime.Infrastructure.Data.Context
         {
             
         }
-
            
 
         public DbSet<Message> Messages { get; set; }

@@ -10,4 +10,10 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ChatRealTime.Domain.Core\ChatRealTime.Domain.Core.csproj" />
+    <ProjectReference Include="..\ChatRealTime.Domain\ChatRealTime.Domain.csproj" />
+    <ProjectReference Include="..\ChatRealTime.Repository\ChatRealTime.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

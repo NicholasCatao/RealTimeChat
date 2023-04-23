@@ -2,7 +2,6 @@
 using ChatRealTime.Infrastructure.Data.Context;
 using ChatRealTime.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
 
 namespace ChatRealTime.Repository.Repository
 {
@@ -10,20 +9,12 @@ namespace ChatRealTime.Repository.Repository
     {
         private readonly AppDbContext _appDbContext;
 
-        public UserRepository(AppDbContext appDbContext)
-        {
-            _appDbContext = appDbContext;
-        }
+        public UserRepository(AppDbContext appDbContext) => _appDbContext = appDbContext;
 
-        public async Task<IEnumerable<Message>> GetAllMessageAsync()
-        {
-          return await _appDbContext.Messages.ToListAsync();
-        }
+        public async Task<AppUser> ObterUsuarioAsync(string id)
+           =>  await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
-        public async Task CreateMessageAsync(Message message)
-        {
-            await _appDbContext.Messages.AddAsync(message);
-            await _appDbContext.SaveChangesAsync();
-        }
+        public async Task<IEnumerable<AppUser>> ObterUsuariosAsync()
+         => await _appDbContext.Users.ToListAsync();
     }
 }

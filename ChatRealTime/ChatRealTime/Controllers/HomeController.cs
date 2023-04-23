@@ -19,28 +19,21 @@ namespace ChatRealTime.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var currentUser = await _userManager.GetUserAsync(User);
-          //  ViewBag.CurrentUserName = currentUser.UserName;
-            var messages = await _userAppService.GetAllMessageAsync();
+       
 
-            return View();
-        }
-
-      public async Task<IActionResult> Create(Message message)
-        {
-            if(ModelState.IsValid)
-            {
-                message.UserName = User.Identity.Name;
-                var sender = await _userManager.GetUserAsync(User);
-                message.Userid = sender.Id;
-                await _userAppService.CreateMessageAsync(message);
-                return Ok();
-            }
-
-            return BadRequest();
-        }
+      //public async Task<IActionResult> Create(Message message)
+      //  {
+      //      if(ModelState.IsValid)
+      //      {
+      //          message.UserName = User.Identity.Name;
+      //          var sender = await _userManager.GetUserAsync(User);
+      //          message.Userid = sender.Id;
+      //          await _userAppService.CreateMessageAsync(message);
+      //          return Ok();
+      //      }
+      
+      //      return BadRequest();
+      //  }
 
         public IActionResult Privacy()
         {

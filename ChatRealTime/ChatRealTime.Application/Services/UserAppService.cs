@@ -1,7 +1,6 @@
 ﻿using ChatRealTime.Application.Interfaces;
 using ChatRealTime.Domain.Core.Interfaces;
 using ChatRealTime.Domain.Models;
-using System.Security.Claims;
 
 namespace ChatRealTime.Application.Services
 {
@@ -15,13 +14,14 @@ namespace ChatRealTime.Application.Services
             _userService = userService;
         }
 
-        public async Task<IEnumerable<Message>> GetAllMessageAsync()
-           => await _userService.GetAllMessageAsync();
-
-        public async Task CreateMessageAsync(Message  message)
+        public async Task<AppUser> ObterUsuarioAsync(string id)
         {
-            await _userService.CreateMessageAsync(message);
+            return await _userService.ObterUsuarioAsync(id);
+
+            //Todo Adicionar Mapper de AppUser para AppUserDTO
         }
 
+        public async Task<IEnumerable<AppUser>> ObterUsuariosAsync()
+          => await _userService.ObterUsuariosAsync();
     }
 }

@@ -1,7 +1,6 @@
 ﻿using ChatRealTime.Domain.Core.Interfaces;
 using ChatRealTime.Domain.Models;
 using ChatRealTime.Repository.Interfaces;
-using System.Security.Claims;
 
 namespace ChatRealTime.Domain.Services.Services
 {
@@ -14,13 +13,19 @@ namespace ChatRealTime.Domain.Services.Services
             _userRepository = userRepository;
         }
 
-        public async Task<IEnumerable<Message>> GetAllMessageAsync()
-            => await _userRepository.GetAllMessageAsync();
+        //public async Task<IEnumerable<Message>> GetAllMessageAsync()
+        //    => await _userRepository.GetAllMessageAsync();
 
-        public async Task CreateMessageAsync(Message message)
-        {
-          await  _userRepository.CreateMessageAsync(message);
-        }
+        //public async Task CreateMessageAsync(Message message)
+        //{
+        //  await  _userRepository.CreateMessageAsync(message);
+        //}
+
+        public async Task<AppUser> ObterUsuarioAsync(string id)
+             => await _userRepository.ObterUsuarioAsync(id);
+
+        public async Task<IEnumerable<AppUser>> ObterUsuariosAsync()
+            => await _userRepository.ObterUsuariosAsync();
 
     }
 }

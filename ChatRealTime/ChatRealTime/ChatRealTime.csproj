@@ -17,4 +17,11 @@
     <ProjectReference Include="..\ChatRealTime.Infrastructure.Data\ChatRealTime.Infrastructure.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\avatars\" />
+    <Folder Include="wwwroot\images\emojis\" />
+    <Folder Include="wwwroot\images\screenShots\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

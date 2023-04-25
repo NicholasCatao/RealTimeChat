@@ -13,7 +13,7 @@ namespace ChatRealTime.Application.Services
             _messageService = messageService;
         }
 
-        public async Task IncluirMessagemAsync(Message message)
+        public async Task IncluirMessagemAsync(MessageModel message)
        => await _messageService.IncluirMessagemAsync(message);
     }
 }

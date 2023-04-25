@@ -11,10 +11,10 @@ namespace ChatRealTime.Repository.Repository
 
         public UserRepository(AppDbContext appDbContext) => _appDbContext = appDbContext;
 
-        public async Task<AppUser> ObterUsuarioAsync(string id)
+        public async Task<AppUserModel> ObterUsuarioAsync(string id)
            =>  await _appDbContext.Users.FirstOrDefaultAsync(u => u.Id == id);
 
-        public async Task<IEnumerable<AppUser>> ObterUsuariosAsync()
+        public async Task<IEnumerable<AppUserModel>> ObterUsuariosAsync()
          => await _appDbContext.Users.ToListAsync();
     }
 }

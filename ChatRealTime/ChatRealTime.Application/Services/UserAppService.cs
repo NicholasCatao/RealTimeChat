@@ -14,14 +14,14 @@ namespace ChatRealTime.Application.Services
             _userService = userService;
         }
 
-        public async Task<AppUser> ObterUsuarioAsync(string id)
+        public async Task<AppUserModel> ObterUsuarioAsync(string id)
         {
             return await _userService.ObterUsuarioAsync(id);
 
             //Todo Adicionar Mapper de AppUser para AppUserDTO
         }
 
-        public async Task<IEnumerable<AppUser>> ObterUsuariosAsync()
+        public async Task<IEnumerable<AppUserModel>> ObterUsuariosAsync()
           => await _userService.ObterUsuariosAsync();
     }
 }

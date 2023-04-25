@@ -4,6 +4,6 @@ namespace ChatRealTime.Application.Interfaces
 {
     public interface IMessageAppService
     {
-        Task IncluirMessagemAsync(Message message);
+        Task IncluirMessagemAsync(MessageModel message);
     }
 }

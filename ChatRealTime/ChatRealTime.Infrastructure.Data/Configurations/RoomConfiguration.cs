@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ChatRealTime.Infrastructure.Data.Configurations
 {
-    public class RoomConfiguration : IEntityTypeConfiguration<Room>
+    public class RoomConfiguration : IEntityTypeConfiguration<RoomModel>
     {
-        public void Configure(EntityTypeBuilder<Room> builder)
+        public void Configure(EntityTypeBuilder<RoomModel> builder)
         {
             builder.ToTable("Rooms");
 

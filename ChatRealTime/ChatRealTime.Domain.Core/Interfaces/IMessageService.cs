@@ -5,6 +5,6 @@ namespace ChatRealTime.Domain.Core.Interfaces
     public interface IMessageService
     {
        // Task<IEnumerable<Message>> GetAllMessageAsync();
-        Task IncluirMessagemAsync(Message message);
+        Task IncluirMessagemAsync(MessageModel message);
     }
 }

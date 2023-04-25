@@ -10,10 +10,19 @@ namespace ChatRealTime.Repository.Repository
 
         public MessageRepository(AppDbContext appDbContext) => _appDbContext = appDbContext;
 
-        public async Task IncluirMessagemAsync(Message message)
+        public async Task IncluirMessagemAsync(MessageModel message)
         {
             await _appDbContext.Messages.AddAsync(message);
             await _appDbContext.SaveChangesAsync();
         }
+
+
+        //public async Task<IEnumerable<Message>> GetAllMessageAsync()
+        //    => await _userRepository.GetAllMessageAsync();
+
+        //public async Task CreateMessageAsync(Message message)
+        //{
+        //  await  _userRepository.CreateMessageAsync(message);
+        //}
     }
 }

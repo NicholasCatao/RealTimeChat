@@ -4,6 +4,6 @@ namespace ChatRealTime.Repository.Interfaces
 {
     public interface IMessageRepository
     {
-        Task IncluirMessagemAsync(Message message);
+        Task IncluirMessagemAsync(MessageModel message);
     }
 }

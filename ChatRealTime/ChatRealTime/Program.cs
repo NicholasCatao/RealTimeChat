@@ -24,7 +24,7 @@ builder.Services.AddSignalR();
 builder.Services.AddDbContext<AppDbContext>(options =>
           options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
 
-builder.Services.AddIdentity<AppUser, IdentityRole>()
+builder.Services.AddIdentity<AppUserModel, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
     .AddDefaultTokenProviders();
 

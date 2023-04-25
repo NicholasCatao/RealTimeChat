@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChatRealTime.Application.DTO\ChatRealTime.Application.DTO.csproj" />
     <ProjectReference Include="..\ChatRealTime.Domain.Core\ChatRealTime.Domain.Core.csproj" />
     <ProjectReference Include="..\ChatRealTime.Domain\ChatRealTime.Domain.csproj" />
   </ItemGroup>

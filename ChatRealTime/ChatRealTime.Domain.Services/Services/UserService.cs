@@ -13,12 +13,13 @@ namespace ChatRealTime.Domain.Services.Services
             _userRepository = userRepository;
         }
 
-      
-
-        public async Task<AppUserModel> ObterUsuarioAsync(string id)
+        public async Task<AppUser> ObterUsuarioAsync(string id)
              => await _userRepository.ObterUsuarioAsync(id);
 
-        public async Task<IEnumerable<AppUserModel>> ObterUsuariosAsync()
+        public async Task<AppUser> ObterUsuarioIdentityAsync(string nome)
+             => await _userRepository.ObterUsuarioAsync(nome);
+
+        public async Task<IEnumerable<AppUser>> ObterUsuariosAsync()
             => await _userRepository.ObterUsuariosAsync();
 
     }

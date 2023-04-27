@@ -10,7 +10,12 @@ namespace ChatRealTime.Domain.Services.Services
 
         public MessageService(IMessageRepository messageRepository) => _messageRepository = messageRepository;
 
-      public async  Task IncluirMessagemAsync(MessageModel message)
-        =>  await  _messageRepository.IncluirMessagemAsync(message);
+        public async Task IncluirMessagemAsync(Message message)
+          => await _messageRepository.IncluirMessagemAsync(message);
+
+        public async Task<Message> ObterMensagemAsync(int id)
+           => await _messageRepository.ObterMensagemAsync(id);
+        public async Task<IEnumerable<Message>> ObterMessagensSalaAsync(int idSala)
+           => await _messageRepository.ObterMessagensSalaAsync(idSala);
     }
 }

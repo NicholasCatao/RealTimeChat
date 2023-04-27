@@ -51,7 +51,7 @@ namespace ChatRealTime.Hubs
                             Timestamp = DateTime.Now
                         };
 
-                        var msg = new MessageModel
+                        var msg = new Message
                         {
                             Content = Regex.Replace(message, @"<.*?>", string.Empty),
                             FromUserId = remetente.Id,
@@ -121,7 +121,7 @@ namespace ChatRealTime.Hubs
             try
             {
                 var user = await _userAppService.ObterUsuarioAsync(IdentityName);
-                var userViewModel = _mapper.Map<AppUserModel, UserViewModel>(user);
+                var userViewModel = _mapper.Map<AppUser, UserViewModel>(user);
                 userViewModel.CurrentRoom = "";
 
                 if (!_Connections.Any(u => u.UserName == IdentityName))

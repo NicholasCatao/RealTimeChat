@@ -4,7 +4,8 @@ namespace ChatRealTime.Application.Interfaces
 {
     public interface IUserAppService
     {
-        Task<AppUserModel> ObterUsuarioAsync(string id);
-        Task<IEnumerable<AppUserModel>> ObterUsuariosAsync();
+        Task<AppUser> ObterUsuarioAsync(string id);
+        Task<AppUser> ObterUsuarioIdentityAsync(string nome);
+        Task<IEnumerable<AppUser>> ObterUsuariosAsync();
     }
 }

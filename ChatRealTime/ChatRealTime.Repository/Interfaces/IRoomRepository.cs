@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ChatRealTime.Domain.Models;
 
 namespace ChatRealTime.Repository.Interfaces
 {
-    internal interface IRoomRepository
+    public interface IRoomRepository
     {
+        Task IncluirSalaAsync(Room room);
+        Task<Room> ObterSalaAsync(string chatRoom);
+        Task<Room> ObterSalaPorIdAsync(int id);
+        Task<IEnumerable<Room>> ObterSalasAsync();
     }
 }

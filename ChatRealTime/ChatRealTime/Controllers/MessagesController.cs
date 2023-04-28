@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 
-namespace Chat.Web.Controllers
+namespace ChatRealTime.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]

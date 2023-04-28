@@ -47,48 +47,5 @@ namespace ChatRealTime.Controllers
             return CreatedAtAction(nameof(Get), new { id = room.Id }, room);
 
         }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Edit(int id, RoomDTO roomRequest)
-        {
-            //if (_context.Rooms.Any(r => r.Name == viewModel.Name))
-            //    return BadRequest("Invalid room name or room already exists");
-
-            var room = await _context.Rooms
-                .Include(r => r.Admin)
-                .Where(r => r.Id == id && r.Admin.UserName == User.Identity.Name)
-                .FirstOrDefaultAsync();
-
-            if (room == null)
-                return NotFound();
-
-            room.Name = roomRequest.Name;
-            await roomRequest.SaveChangesAsync();
-
-            var updatedRoom = _mapper.Map<Room, RoomViewModel>(room);
-            await _hubContext.Clients.All.SendAsync("updateChatRoom", updatedRoom);
-
-            return Ok();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var room = await _context.Rooms
-                .Include(r => r.Admin)
-                .Where(r => r.Id == id && r.Admin.UserName == User.Identity.Name)
-                .FirstOrDefaultAsync();
-
-            if (room == null)
-                return NotFound();
-
-            _context.Rooms.Remove(room);
-            await _context.SaveChangesAsync();
-
-            await _hubContext.Clients.All.SendAsync("removeChatRoom", room.Id);
-            await _hubContext.Clients.Group(room.Name).SendAsync("onRoomDeleted");
-
-            return Ok();
-        }
     }
 }

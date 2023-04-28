@@ -1,7 +1,8 @@
 ﻿@page
+@using ChatRealtime.Areas.Identity.Pages.Account;
 @model LoginModel
 @{
-    ViewData["Title"] = "Sign in";
+    ViewData["Title"] = "Entrar";
 }
 
 <div class="card" style="max-width: 350px">
@@ -30,7 +31,7 @@
             </div>
             <div class="col-12 mt-3">
                 @*<a class="d-inline-flex" asp-page="./ForgotPassword">Forgot your password?</a>*@
-                <a class="d-inline-flex" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                <a class="d-inline-flex" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registrar como novo usuário</a>
             </div>
         </form>
     </div>

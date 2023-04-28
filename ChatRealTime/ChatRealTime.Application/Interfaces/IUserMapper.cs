@@ -5,6 +5,6 @@ namespace ChatRealTime.Application.Interfaces
 {
     public interface IUserMapper
     {
-        public UserDTO MapToResponse(AppUserModel model);
+        public UserDTO MapToResponse(AppUser model);
     }
 }

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ChatRealTime.Infrastructure.Data.Configurations
 {
-    public class MessageConfiguration : IEntityTypeConfiguration<MessageModel>
+    public class MessageConfiguration : IEntityTypeConfiguration<Message>
     {
-        public void Configure(EntityTypeBuilder<MessageModel> builder)
+        public void Configure(EntityTypeBuilder<Message> builder)
         {
             builder.ToTable("Messages");
 

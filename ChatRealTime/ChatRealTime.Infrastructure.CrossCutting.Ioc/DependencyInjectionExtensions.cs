@@ -37,8 +37,8 @@ namespace ChatRealTime.Infrastructure.CrossCutting.Ioc
 
         public static void UseIdentity(this IServiceCollection services)
         {
-            services.AddScoped<UserManager<AppUserModel>>();
-            services.AddDefaultIdentity<AppUserModel>();
+            services.AddScoped<UserManager<AppUser>>();
+            services.AddDefaultIdentity<AppUser>();
         }
     }
 }

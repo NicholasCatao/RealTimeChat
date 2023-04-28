@@ -13,13 +13,16 @@ namespace ChatRealTime.Application.Mappers
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<MessageModel, MessageDTO>();
+                cfg.CreateMap<Message, MessageDTO>();
             });
 
             _mapper = config.CreateMapper();
         }
 
-        public MessageDTO MapToResponse(MessageModel model)
+        public MessageDTO MapToResponse(Message model)
             => _mapper.Map<MessageDTO>(model);
+
+        public IEnumerable<MessageDTO> MapToResponse(IEnumerable<Message> model)
+          =>  _mapper.Map<IEnumerable<MessageDTO>>(model);
     }
 }

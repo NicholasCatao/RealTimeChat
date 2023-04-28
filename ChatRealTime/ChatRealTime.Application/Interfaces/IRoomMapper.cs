@@ -5,6 +5,8 @@ namespace ChatRealTime.Application.Interfaces
 {
     public interface IRoomMapper
     {
-        RoomDTO MapToResponse(RoomModel model);
+        Room MapToRequest(RoomDTO room);
+        RoomDTO MapToResponse(Room model);
+        IEnumerable<RoomDTO> MapToResponse(IEnumerable<Room> model);
     }
 }

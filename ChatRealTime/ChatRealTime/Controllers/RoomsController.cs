@@ -18,8 +18,9 @@ namespace ChatRealTime.Controllers
     {
         private readonly IHubContext<ChatHub> _hubContext;
         private readonly IRoomAppService _roomAppService;
+        private readonly IMapper _mapper;
         public RoomsController(IHubContext<ChatHub> hubContext) => _hubContext = hubContext;
-      
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RoomDTO>>> GetRoomsListAsync()
             => Ok(await _roomAppService.ObterSalasAsync());
@@ -54,19 +55,11 @@ namespace ChatRealTime.Controllers
             //if (_context.Rooms.Any(r => r.Name == viewModel.Name))
             //    return BadRequest("Invalid room name or room already exists");
 
-            var room = await _context.Rooms
-                .Include(r => r.Admin)
-                .Where(r => r.Id == id && r.Admin.UserName == User.Identity.Name)
-                .FirstOrDefaultAsync();
+            var room = await _roomAppService.EditarSalaAsync(id, roomRequest, User.Identity.Name);
 
-            if (room == null)
-                return NotFound();
+            if (room == null) return NotFound();
 
-            room.Name = roomRequest.Name;
-            await roomRequest.SaveChangesAsync();
-
-            var updatedRoom = _mapper.Map<Room, RoomViewModel>(room);
-            await _hubContext.Clients.All.SendAsync("updateChatRoom", updatedRoom);
+            await _hubContext.Clients.All.SendAsync("updateChatRoom", room);
 
             return Ok();
         }
@@ -74,19 +67,10 @@ namespace ChatRealTime.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var room = await _context.Rooms
-                .Include(r => r.Admin)
-                .Where(r => r.Id == id && r.Admin.UserName == User.Identity.Name)
-                .FirstOrDefaultAsync();
+            var room = await _roomAppService.DeletarSalaAsync(id, User.Identity.Name);
 
-            if (room == null)
-                return NotFound();
-
-            _context.Rooms.Remove(room);
-            await _context.SaveChangesAsync();
-
-            await _hubContext.Clients.All.SendAsync("removeChatRoom", room.Id);
-            await _hubContext.Clients.Group(room.Name).SendAsync("onRoomDeleted");
+            await _hubContext.Clients.All.SendAsync("removeChatRoom", room.Item1) ;
+            await _hubContext.Clients.Group(room.Item2).SendAsync("onRoomDeleted");
 
             return Ok();
         }

@@ -15,6 +15,15 @@ namespace ChatRealTime.Domain.Services.Services
             return room;
         }
 
+        public async Task<Room> EditarSalaAsync(Room room)
+         =>  await _roomRepository.EditarSalaAsync(room);
+
+        public async Task  DeletarSalaAsync(Room room)
+             => await _roomRepository.DeletarSalaAsync(room);
+
+        public async Task<Room> ObterSalaAsync(int id, string adminRoom)
+            => await _roomRepository.ObterSalaAsync(id, adminRoom);
+
         public async Task<Room> ObterSalaAsync(string charRoomName)
             => await _roomRepository.ObterSalaAsync(charRoomName);
 

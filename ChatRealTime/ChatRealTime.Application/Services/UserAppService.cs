@@ -22,9 +22,7 @@ namespace ChatRealTime.Application.Services
         }
 
         public async Task<AppUser> ObterUsuarioIdentityAsync(string nome)
-        {
-            return await _userService.ObterUsuarioIdentityAsync(nome);
-        }
+            => await _userService.ObterUsuarioIdentityAsync(nome);
 
 
         public async Task<IEnumerable<AppUser>> ObterUsuariosAsync()

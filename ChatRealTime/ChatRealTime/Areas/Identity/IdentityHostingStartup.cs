@@ -1,5 +1,4 @@
-﻿[assembly: HostingStartup(typeof(ChatRealTime.Areas.Identity.IdentityHostingStartup))]
-namespace ChatRealTime.Areas.Identity
+﻿namespace ChatRealTime.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {

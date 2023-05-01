@@ -1,32 +1,34 @@
 using ChatRealTime.Domain.Models;
+using ChatRealTime.Helpers;
 using ChatRealTime.Hubs;
 using ChatRealTime.Infrastructure.CrossCutting.Ioc;
 using ChatRealTime.Infrastructure.Data.Context;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 var configuration = builder.Configuration;
 
-//builder.Services.Configure<AppSettings>(configuration);
+builder.Services.Configure<AppSettings>(configuration);
 
 builder.Services.RegisterServicesInjection();
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-
-//builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase("Database"));
-//builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(configuration.GetConnectionString("connectionString")));
+builder.Services.AddRazorPages();
 
 builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
           options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
 
-builder.Services.AddIdentity<AppUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
+builder.Services.AddDefaultIdentity<AppUser>(options =>
+{
+    options.SignIn.RequireConfirmedAccount = false;
+    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_";
+    options.User.RequireUniqueEmail = true;
+}).AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
 
@@ -46,10 +48,8 @@ app.UseRouting();
 app.UseAuthorization();
 app.UseAuthentication();
 
-app.MapHub<ChatHub>("Home/Index");
+app.MapRazorPages();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();

@@ -1,6 +1,7 @@
 ﻿using ChatRealTime.Domain.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace ChatRealTime.Infrastructure.Data.Context
 {
@@ -22,6 +23,10 @@ namespace ChatRealTime.Infrastructure.Data.Context
             .WithOne(m => m.FromUser)
             .HasForeignKey(m => m.FromUserId)
             .OnDelete(DeleteBehavior.Restrict);
+
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }

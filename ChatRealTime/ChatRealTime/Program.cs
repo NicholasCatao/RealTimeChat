@@ -1,18 +1,12 @@
 using ChatRealTime.Domain.Models;
-using ChatRealTime.Helpers;
 using ChatRealTime.Hubs;
 using ChatRealTime.Infrastructure.CrossCutting.Ioc;
 using ChatRealTime.Infrastructure.Data.Context;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var configuration = builder.Configuration;
-
-builder.Services.Configure<AppSettings>(configuration);
+builder.Services.Configure<AppSettings>(builder.Configuration);
 
 builder.Services.RegisterServicesInjection();
 
@@ -21,7 +15,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddSignalR();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-          options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
+          options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
+
 
 builder.Services.AddDefaultIdentity<AppUser>(options =>
 {

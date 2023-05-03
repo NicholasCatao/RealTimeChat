@@ -14,7 +14,7 @@ namespace ChatRealTime.Infrastructure.Data.Context
                    .Build();
 
             var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer(configuration["SqlConnection"]);
+            optionsBuilder.UseSqlServer(configuration.GetConnectionString("SqlConnection"));
 
             return new AppDbContext(optionsBuilder.Options);
         }
